@@ -291,7 +291,7 @@ class TestReportGeneration(unittest.TestCase):
         """Test compliance report contains required content"""
         report = """
 GRC COMPLIANCE MONITORING REPORT
-Generated: 2024-01-15T10:30:00
+Generated: 2026-03-09T10:30:00
 
 COMPLIANCE SUMMARY
 ==================
@@ -310,7 +310,7 @@ Compliance Percentage: 80.0%
         """Test risk report contains required content"""
         report = """
 RISK ASSESSMENT REPORT
-Generated: 2024-01-15T10:30:00
+Generated: 2026-03-09T10:30:00
 
 RISK SUMMARY
 ============

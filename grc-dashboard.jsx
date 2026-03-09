@@ -353,7 +353,7 @@ const GRCDashboard = () => {
 
       {/* Footer */}
       <footer className="dashboard-footer">
-        <p>&copy; 2024 GRC Platform. All rights reserved.</p>
+        <p>&copy; 2026 GRC Platform. All rights reserved.</p>
         <p>AWS Integrated Governance, Risk, and Compliance Solution</p>
       </footer>
     </div>
