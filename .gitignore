@@ -1,0 +1,64 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.env
+*.egg-info/
+dist/
+build/
+
+# Node.js
+node_modules/
+npm-debug.log
+yarn-error.log
+.pnp/
+.pnp.js
+
+# AWS
+.aws/
+*.pem
+*.key
+aws-credentials
+
+# Secrets and credentials
+*.secret
+.env.local
+.env.production
+secrets.yaml
+credentials.json
+
+# IDE and editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+*.log.*
+
+# Build outputs
+dist/
+build/
+*.zip
+*.tar.gz
+
+# Terraform
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfvars
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+*.bak
