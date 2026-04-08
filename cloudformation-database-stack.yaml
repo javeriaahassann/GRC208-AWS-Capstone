@@ -53,7 +53,7 @@ Resources:
     Properties:
       DBInstanceIdentifier: !Sub '${EnvironmentName}-db'
       Engine: mysql
-      EngineVersion: '8.0.35'
+      EngineVersion: '8.0'
       DBInstanceClass: !Ref DBInstanceClass
       AllocatedStorage: !Ref AllocatedStorage
       StorageType: gp3
@@ -65,15 +65,16 @@ Resources:
       DBSubnetGroupName: !Ref DbSubnetGroup
       VPCSecurityGroups:
         - !ImportValue grc-capstone-rds-sg-id
-      BackupRetentionPeriod: 30
+      BackupRetentionPeriod: 1
       PreferredBackupWindow: '03:00-04:00'
       PreferredMaintenanceWindow: 'sun:04:00-sun:05:00'
-      MultiAZ: true
+      MultiAZ: false
       EnableCloudwatchLogsExports:
         - error
         - general
         - slowquery
       EnableIAMDatabaseAuthentication: true
+      PubliclyAccessible: true
       DeletionProtection: true
       Tags:
         - Key: Name
@@ -109,17 +110,18 @@ Resources:
       AliasName: !Sub 'alias/${EnvironmentName}-db-key'
       TargetKeyId: !Ref DbEncryptionKey
 
-  # S3 Bucket for Evidence Storage
+ # S3 Bucket for Evidence Storage
   EvidenceBucket:
     Type: AWS::S3::Bucket
     Properties:
       BucketName: !Sub '${EnvironmentName}-evidence-bucket-${AWS::AccountId}'
       VersioningConfiguration:
         Status: Enabled
-      ServerSideEncryptionConfiguration:
-        - ServerSideEncryptionByDefault:
-            SSEAlgorithm: 'aws:kms'
-            KMSMasterKeyID: !GetAtt S3EncryptionKey.Arn
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: !GetAtt S3EncryptionKey.Arn
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
@@ -165,10 +167,11 @@ Resources:
       BucketName: !Sub '${EnvironmentName}-compliance-reports-${AWS::AccountId}'
       VersioningConfiguration:
         Status: Enabled
-      ServerSideEncryptionConfiguration:
-        - ServerSideEncryptionByDefault:
-            SSEAlgorithm: 'aws:kms'
-            KMSMasterKeyID: !GetAtt S3EncryptionKey.Arn
+      BucketEncryption:
+        ServerSideEncryptionConfiguration:
+          - ServerSideEncryptionByDefault:
+              SSEAlgorithm: 'aws:kms'
+              KMSMasterKeyID: !GetAtt S3EncryptionKey.Arn
       PublicAccessBlockConfiguration:
         BlockPublicAcls: true
         BlockPublicPolicy: true
